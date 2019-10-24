@@ -91,7 +91,7 @@ pipeline {
                     }
                 }
             }
-        },
+        }
         stage('Сканер') {
             steps {
                 timestamps {
