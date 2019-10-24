@@ -103,7 +103,7 @@ pipeline {
                                 @echo %SONAR_PROJECTVERSION%
                                 @set JAVA_HOME=${sonar_catalog}\\jdk\\
                                 @set SONAR_SCANNER_OPTS=-Xmx6g
-                                ${scannerHome}\\bin\\sonar-scanner ${scanner_properties} -Dfile.encoding=UTF-8
+                                "${scannerHome}\\bin\\sonar-scanner" ${scanner_properties} -Dfile.encoding=UTF-8
                                 """)
                                 PROJECT_URL = "${env.SONAR_HOST_URL}/dashboard?id=${PROJECT_KEY}"
                             }
