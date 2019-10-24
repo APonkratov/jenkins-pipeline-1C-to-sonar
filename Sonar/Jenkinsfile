@@ -92,15 +92,11 @@ pipeline {
                     script {
                         dir('Repo') {
                             withSonarQubeEnv('Sonar') {
-                                def scanner_properties = "-X -Dsonar.projectVersion=%SONAR_PROJECTVERSION% -Dsonar.projectKey=${PROJECT_KEY} -Dsonar.sources=\"${SRC}\" -Dsonar.externalIssuesReportPaths=${GENERIC_ISSUE_JSON} -Dsonar.sourceEncoding=UTF-8 -Dsonar.inclusions=**/*.bsl -Dsonar.bsl.languageserver.enabled=true"
+                                def scanner_properties = "-X -Dsonar.projectVersion=%SONAR_PROJECTVERSION% -Dsonar.projectKey=${PROJECT_KEY} -Dsonar.sources=\"${SRC}\" -Dsonar.sourceEncoding=UTF-8 -Dsonar.inclusions=**/*.bsl -Dsonar.bsl.languageserver.enabled=true"
                                 def scannerHome = tool 'SonarQube Scanner';
                                 cmd("""
                                 @set SRC=\"${SRC}\"
                                 @echo %SRC%
-                                @call stebi g > temp_SONAR_PROJECTVERSION
-                                @set /p SONAR_PROJECTVERSION=<temp_SONAR_PROJECTVERSION
-                                @DEL temp_SONAR_PROJECTVERSION
-                                @echo %SONAR_PROJECTVERSION%
                                 @set JAVA_HOME=${sonar_catalog}\\jdk\\
                                 @set SONAR_SCANNER_OPTS=-Xmx6g
                                 "${scannerHome}\\bin\\sonar-scanner" ${scanner_properties} -Dfile.encoding=UTF-8
