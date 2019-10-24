@@ -45,8 +45,6 @@ pipeline {
                         PROPERTIES_CATALOG = PROPERTIES_CATALOG.isEmpty() ? "./Sonar" : PROPERTIES_CATALOG
                         
                         git_repo_branch = git_repo_branch.isEmpty() ? 'master' : git_repo_branch
-
-                        perf_catalog = perf_catalog == null || perf_catalog == 'null' ? '' : perf_catalog
                         
                         SRC = "./${PROJECT_NAME}/src"
 
@@ -95,9 +93,6 @@ pipeline {
                         dir('Repo') {
                             withSonarQubeEnv('Sonar') {
                                 def scanner_properties = "-X -Dsonar.projectVersion=%SONAR_PROJECTVERSION% -Dsonar.projectKey=${PROJECT_KEY} -Dsonar.sources=\"${SRC}\" -Dsonar.externalIssuesReportPaths=${GENERIC_ISSUE_JSON} -Dsonar.sourceEncoding=UTF-8 -Dsonar.inclusions=**/*.bsl -Dsonar.bsl.languageserver.enabled=true"
-                                if (!perf_catalog.isEmpty()) {
-                                    scanner_properties = "${scanner_properties} -Dsonar.coverageReportPaths=\"${TEMP_CATALOG}\\genericCoverage.xml\""
-                                }
                                 def scannerHome = tool 'SonarQube Scanner';
                                 cmd("""
                                 @set SRC=\"${SRC}\"
