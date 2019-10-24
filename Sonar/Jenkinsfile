@@ -49,9 +49,6 @@ pipeline {
 
                         perf_catalog = perf_catalog == null || perf_catalog == 'null' ? '' : perf_catalog
                         
-                        BIN_CATALOG = "${sonar_catalog}/bin/"
-                        ACC_BASE = "${sonar_catalog}/ACC/"
-                        ACC_USER = 'Admin'
                         SRC = "./${PROJECT_NAME}/src"
 
                         // Подготовка переменных по переданным параметрам
