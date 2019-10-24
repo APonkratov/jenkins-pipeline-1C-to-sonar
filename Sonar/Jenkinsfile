@@ -46,7 +46,7 @@ pipeline {
                         
                         git_repo_branch = git_repo_branch.isEmpty() ? 'master' : git_repo_branch
                         
-                        SRC = "./${PROJECT_NAME}/src"
+                        SRC = "./src"
 
                         // Подготовка переменных по переданным параметрам
                         // Настройки инструментов
