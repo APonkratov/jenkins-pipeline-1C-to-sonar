@@ -108,16 +108,6 @@ pipeline {
                 }
             }
         }
-        stage('Сборка') {
-            steps {
-                echo 'Сборка...'
-            }
-            post {
-                always {
-                    jiraSendBuildInfo branch: 'develop', site: 'pbm-logistic.atlassian.net'
-                }
-            }
-        }
     }
 }
 
